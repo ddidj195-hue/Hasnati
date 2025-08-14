@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">حسناتي - Hasanati</string>
+    <string name="title_activity_main">حسناتي - Hasanati</string>
+    <string name="package_name">com.hasanati.app</string>
+    <string name="custom_url_scheme">com.hasanati.app</string>
+</resources>
