@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hasanati | حسناتي</title>
+    <script>
+      // IMPORTANT: This configures Tailwind to use the 'class' strategy for dark mode.
+      // This is the definitive fix for the theme toggle buttons.
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Cairo', 'sans-serif'],
+              arabic: ['Noto Naskh Arabic', 'serif'],
+            },
+          },
+        },
+      }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+      body {
+        font-family: 'Cairo', sans-serif;
+        overscroll-behavior-y: none; /* Prevents pull-to-refresh on mobile */
+      }
+      .font-arabic {
+        font-family: 'Noto Naskh Arabic', serif;
+      }
+      /* Tajweed CSS Rules (Grayscale) */
+      .tajweed-rule { font-weight: bold; }
+      .ham_wasl, .slnt, .laam_shamsiyah { color: #9ca3af; } /* gray-400 */
+      .madda_normal { color: #4b5563; } /* gray-600 */
+      .madda_permissible { color: #374151; } /* gray-700 */
+      .madda_necessary { color: #111827; font-weight: bold; } /* gray-900 */
+      .qlq { color: #000; font-weight: bold; } /* black */
+      .madda_obligatory { color: #000; font-weight: bold; } /* black */
+      .ikhf_shafawi { color: #4b5563; } /* gray-600 */
+      .ikhf { color: #374151; } /* gray-700 */
+      .idg_shafawi { color: #4b5563; } /* gray-600 */
+      .iqlb { color: #1f2937; } /* gray-800 */
+      .idg_ghunnah { color: #1f2937; } /* gray-800 */
+      .idg_wo_ghunnah { color: #1f2937; } /* gray-800 */
+      .ghn { color: #111827; font-weight: 600; } /* gray-900 */
+    </style>
+    <script>
+      // Insert this script in <head> to avoid FOUC (Flash of Unstyled Content)
+      // This script now correctly reads the settings object and handles the 'system' theme.
+      (function() {
+        try {
+          const settingsJSON = localStorage.getItem('hasanati_settings');
+          const defaultTheme = 'system';
+          let theme = defaultTheme;
+
+          if (settingsJSON) {
+            const settings = JSON.parse(settingsJSON);
+            theme = settings.theme || defaultTheme;
+          }
+
+          if (theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {
+          console.error('Error applying initial theme:', e);
+          // Fallback to system preference if settings are corrupted
+          if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+          }
+        }
+      })();
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.1",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.1/",
+    "react/": "https://esm.sh/react@^19.1.1/",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.8.0",
+    "@google/genai": "https://esm.sh/@google/genai"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-white dark:bg-black text-gray-900 dark:text-gray-100">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
